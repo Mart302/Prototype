@@ -9,3 +9,9 @@
     - name: Execute recording script
       shell: "{{ script_path }}"
       become: true
+      
+    - name: Restart recording script service
+      systemd:
+        name: recording-script.service
+        state: restarted
+      become: true
