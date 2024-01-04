@@ -1,0 +1,3 @@
+---
+
+	script_path: "{{ lookup('file', 'recording_script.sh') }}"

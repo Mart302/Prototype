@@ -1,0 +1,11 @@
+---
+- name: Install prerequisites
+      apt:
+        name:
+          - ffmpeg
+        state: present
+      become: true
+
+    - name: Execute recording script
+      shell: "{{ script_path }}"
+      become: true
