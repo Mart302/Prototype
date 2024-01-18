@@ -1,17 +1,16 @@
 ---
-- name: Install prerequisites
-      apt:
-        name:
-          - ffmpeg
-        state: present
-      become: true
+- name: Install FFmpeg
+  apt:
+    name: ffmpeg
+    state: present
 
-    - name: Execute recording script
-      shell: "{{ script_path }}"
-      become: true
-      
-    - name: Restart recording script service
-      systemd:
-        name: recording-script.service
-        state: restarted
-      become: true
+- name: Create screen recording directory
+  file:
+    path: /opt/screen_recording
+    state: directory
+
+- name: Copy screen recording script
+  copy:
+    src: files/screen_record.sh
+    dest: /opt/screen_recording/
+    mode: 0755
