@@ -1,7 +1,0 @@
----
-files:
-    - src: recording_script.sh
-      dest: /opt/recording_script.sh
-      owner: root
-      group: root
-      mode: 0755
