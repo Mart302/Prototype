@@ -1,0 +1,6 @@
+---
+- name: Restart recording script service
+      systemd:
+        name: recording_script
+        state: restarted
+      become: true

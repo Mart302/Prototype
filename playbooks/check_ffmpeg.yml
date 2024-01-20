@@ -1,0 +1,15 @@
+---
+- name: Check if FFMPEG is installed on RHEL 8
+  hosts: nodes
+  become: yes  # To execute tasks with sudo privileges
+
+  tasks:
+    - name: Check if FFMPEG is installed
+      command: "ffmpeg -version"
+      register: ffmpeg_check
+      ignore_errors: yes
+
+    - name: Print message based on FFMPEG installation status
+      debug:
+        msg: "FFMPEG is already installed."
+      when: "'not found' not in ffmpeg_check.stderr"

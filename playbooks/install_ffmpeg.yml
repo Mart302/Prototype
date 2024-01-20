@@ -1,0 +1,18 @@
+---
+- name: Install FFMPEG on RHEL 8
+  hosts: nodes
+  become: yes  # To execute tasks with sudo privileges
+
+  tasks:
+    - name: Install FFMPEG if not installed
+      package:
+        name: ffmpeg
+        state: present
+      when: "'not found' in ffmpeg_check.stderr"
+
+  handlers:
+    - name: Restart services after installation (if needed)
+      service:
+        name: your_service_name
+        state: restarted
+      when: "'not found' in ffmpeg_check.stderr"

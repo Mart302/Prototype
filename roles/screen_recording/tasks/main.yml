@@ -1,0 +1,16 @@
+---
+- name: Install FFmpeg
+  apt:
+    name: ffmpeg
+    state: present
+
+- name: Create screen recording directory
+  file:
+    path: /opt/screen_recording
+    state: directory
+
+- name: Copy screen recording script
+  copy:
+    src: files/screen_record.sh
+    dest: /opt/screen_recording/
+    mode: 0755
