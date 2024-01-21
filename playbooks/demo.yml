@@ -1,0 +1,39 @@
+---
+- name: Configure screen recording
+  hosts: nodes
+  become: true
+
+  vars:
+    # Define default multicast address
+    multicast_addr_default: "192.1.1.1"
+
+  tasks:
+    - name: Install the package
+      package:
+        name: screen_recording
+        state: present
+
+    - name: Configure screen_recording service
+      template:
+        src: screen_recording.service.j2
+        dest: /etc/systemd/system/screen_recording.service
+      notify: Reload screen_recording service
+
+    - name: Configure screen_recording.ini
+      template:
+        src: screen_recording.ini.j2
+        dest: /etc/screen_recording.ini
+      vars:
+        multicast_addresses: "{{ multicast_addresses | default({}) }}"
+
+    - name: Reload screen_recording service
+      systemd:
+        name: screen_recording
+        state: restarted
+
+    - name: Set postinstall script executable
+      file:
+        path: /path/to/postinstall.sh
+        mode: +x
+      vars:
+        multicast
