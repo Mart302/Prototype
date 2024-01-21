@@ -2,7 +2,12 @@
 - name: Configure screen recording
   hosts: node1
   gather_facts: false
+  vars_promt:
 
+    -  name: package_name
+       promt: What is the package name?
+       private: false
+      
   tasks:
     - name: Install the package
       package:
