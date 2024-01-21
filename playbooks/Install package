@@ -1,0 +1,18 @@
+---
+- name: Configure screen recording
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Install the package
+      package:
+        name: "{{ package_name }}"
+        state: present
+      tags:
+        - install_package
+
+    - name: Debug package_name variable
+      debug:
+        var: package_name
+      tags:
+        - debug_variable
