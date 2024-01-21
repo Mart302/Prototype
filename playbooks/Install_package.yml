@@ -1,6 +1,6 @@
 ---
 - name: Configure screen recording
-  hosts: nodes
+  hosts: node1
   gather_facts: false
 
   tasks:
