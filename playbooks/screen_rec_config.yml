@@ -1,0 +1,17 @@
+---
+- name: Configure Screen Recording Settings
+  hosts: node1, node2
+  tasks:
+    - name: Set Recording Quality
+      ansible.builtin.ini_file:
+        dest: /path/to/screen-recording-app.conf
+        section: recording
+        option: quality
+        value: high
+
+    - name: Set Recording Duration
+      ansible.builtin.ini_file:
+        dest: /path/to/screen-recording-app.conf
+        section: recording
+        option: duration
+        value: 120  # 2 minutes
