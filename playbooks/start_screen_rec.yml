@@ -1,0 +1,6 @@
+---
+- name: Start Screen Recording
+  hosts: node1,node2
+  tasks:
+    - name: Start recording
+      ansible.builtin.shell: /path/to/start_recording_script.sh
